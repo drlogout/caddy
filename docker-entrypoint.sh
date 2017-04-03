@@ -7,7 +7,7 @@ caddyfile=""
 counter=0
 
 for arg in "${args[@]}"; do
-  if [ "$arg" == "-conf" ]; then
+  if [ "$arg" == "-conf" ] || [ "$arg" == "--conf" ] ; then
     caddyfile=${args[$counter+1]}
   fi
   counter=$((counter+1))
