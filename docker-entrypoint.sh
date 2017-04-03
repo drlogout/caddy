@@ -1,11 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-if [ ! -z "$CADDYFILE" ] && [ ! -e "$CADDYFILE" ] ; then
-  echo "Copy initial Caddyfile to" "$CADDYFILE"
-  cp /etc/Caddyfile "$CADDYFILE"
+args=("$@")
+caddyfile=""
+counter=0
+
+for arg in "${args[@]}"; do
+  if [ "$arg" == "-conf" ]; then
+    caddyfile=${args[$counter+1]}
+  fi
+  counter=$((counter+1))
+done
+
+if [ ! -z "$caddyfile" ] && [ ! -e "$caddyfile" ] ; then
+  echo "Copy initial Caddyfile to $caddyfile"
+  cp /etc/Caddyfile "$caddyfile"
 fi
 
 exec /usr/bin/caddy "$@"
-
