@@ -1,4 +1,4 @@
-FROM abiosoft/caddy:0.11.3
+FROM abiosoft/caddy:1.0.0
 MAINTAINER Christian Nolte hello@noltech.net
 
 RUN apk -U add bash
